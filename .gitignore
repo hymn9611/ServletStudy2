@@ -24,4 +24,4 @@ hs_err_pid*
 
 # my
 DBConnector.java
-com/iu/s1/test/*
+src/com/iu/s1/test/*
