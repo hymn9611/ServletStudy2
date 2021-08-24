@@ -34,7 +34,7 @@ public class BankBookController {
 			
 			request.setAttribute("list", ar);
 			
-			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/view/bankbook/bankbookSelect.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/view/bankbook/bankbookList.jsp");
 			try {
 				view.forward(request, response);
 			} catch (Exception e) {
