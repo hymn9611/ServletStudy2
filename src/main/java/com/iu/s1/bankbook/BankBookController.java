@@ -32,6 +32,8 @@ public class BankBookController {
 				System.out.println(bankBookDTO.getBookName());
 			}
 			
+			request.setAttribute("list", ar);
+			
 			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/view/bankbook/bankbookSelect.jsp");
 			try {
 				view.forward(request, response);
@@ -49,6 +51,11 @@ public class BankBookController {
 			bankBookDTO.setBookNumber(num2);
 			bankBookDTO = bankBookDAO.getSelect(bankBookDTO);
 			System.out.println(bankBookDTO.getBookName());
+			
+			//bankBookDTO는 DB까지 살아서 못간다 (지역변수 이기 때문에_
+			//DB까지 살아서 가는 이는 request밖에 없다.
+			//이 말은 bankbookSelect까지 살아서 보내려면 request 이용
+			request.setAttribute("dto", bankBookDTO); //bankBookDTO를 "dto"에 넣는다.
 			
 			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/view/bankbook/bankbookSelect.jsp");
 			try {
