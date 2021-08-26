@@ -11,6 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class BankBookController {
 	
@@ -115,6 +116,14 @@ public class BankBookController {
 //			bankBookDTO는 DB까지 살아서 못간다 (지역변수 이기 때문에 DB까지 살아서 가는 이는 request밖에 없다.
 //			이 말은 bankbookSelect까지 살아서 보내려면 request 이용
 			request.setAttribute("dto", bankBookDTO); //bankBookDTO를 "dto"에 넣는다.
+			//bankbookSelect.jsp에서 실험하려고 만든 코드
+			request.setAttribute("count", 123);
+			request.setAttribute("name", "iu");
+			//
+			HttpSession session = request.getSession();
+			session.setAttribute("se", "session");//같은키 다른영역
+			request.setAttribute("se", "request");//같은키 다른영역 - 생명주기 짧은것 부터 찾게된다.
+			
 			
 			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/view/bankbook/bankbookSelect.jsp");
 			try {
