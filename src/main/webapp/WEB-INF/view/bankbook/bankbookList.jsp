@@ -4,10 +4,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 	</head>
+	
+	
 	<body>
 		<h1>Bankbook List Page</h1>
 		
@@ -16,6 +19,7 @@
 				<th>일련번호</th><th>제품명</th><th>이자율</th>
 			</tr>
 		<%
+			/* request에 담아놓은 데이터를 여기서 사용 */
 			Object obj = request.getAttribute("list");
 			ArrayList<BankBookDTO> ar = (ArrayList<BankBookDTO>)obj;
 			for(BankBookDTO dto: ar){
@@ -27,5 +31,7 @@
 			</tr>
 		<%}%>
 		</table>
+		
+		<a href="./bankbookInsert.do">WRITE</a>
 	</body>
 </html>

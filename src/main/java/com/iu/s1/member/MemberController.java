@@ -1,9 +1,20 @@
 package com.iu.s1.member;
 
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class MemberController {
-	public void start(HttpServletRequest request) {
+	
+	private MemberService memberService;
+	
+	public MemberController() {
+		memberService = new MemberService();
+	}
+	public void start(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberController 실행");
 		
 		//memberLogin.do, memberJoin.do, memberPage.do 인덱스
@@ -18,10 +29,33 @@ public class MemberController {
 			System.out.println(value);
 			String value2 = request.getParameter("pw");
 			System.out.println(value2);
+			
+			
 		} else if(path.equals("memberJoin.do")) {
 			System.out.println("회원가입 진행");
+			
+			String method = request.getMethod();
+			
+			if(method.equals("POST")) {
+				int result = memberService.memberJoin(request, response);
+				if(result>0) {
+					response.sendRedirect("../");
+				} else {
+					response.sendRedirect("./memberJoin.do");
+				}
+				
+				
+			} else {
+				RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/view/member/memberJoin.jsp");
+				view.forward(request, response);
+				
+			}
+			
+			
 		} else if(path.equals("memberPage.do")) {
 			System.out.println("마이페이지");
+			
+			
 		} else {
 			System.out.println("존재하지 않는 URL");
 		}

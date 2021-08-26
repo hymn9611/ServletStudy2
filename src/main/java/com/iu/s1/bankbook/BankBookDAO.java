@@ -16,7 +16,35 @@ public class BankBookDAO {
 		dbConnector = new DBConnector();
 	}
 	
-	//getList
+	//setInsert : int로 성공여부를 판단가능
+	public int setInsert(BankBookDTO bankBookDTO) {
+		Connection con = dbConnector.getConnect();
+		PreparedStatement st = null;
+		int result = 0;
+		
+		String sql = "INSERT INTO bankbook (bookNumber, bookName, bookRate, bookSale) "
+				+ "values (bankbook_seq.nextval, ?, ?, ?)";
+		
+		try {
+			st = con.prepareStatement(sql);
+			st.setString(1, bankBookDTO.getBookName());
+			st.setDouble(2, bankBookDTO.getBookRate());
+			st.setInt(3, bankBookDTO.getBookSale());
+			//INSERT INTO니까 executeQuery가 아니라 executeUpdate
+			result = st.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			dbConnector.disConnect(st, con);
+		}
+		
+		return result;
+		
+	}
+	
+	//getList : bankbook의 모든 자료를 출력하는 메서드
 	public ArrayList<BankBookDTO> getList() {
 		Connection con = dbConnector.getConnect();
 		PreparedStatement st = null;
@@ -29,6 +57,7 @@ public class BankBookDAO {
 			st = con.prepareStatement(sql);
 			rs = st.executeQuery();
 			
+			//rs에는 bankbook의 자료가 들어있고 이것을 bankBookDTO에 넣고, ar로 배열
 			while(rs.next()) {
 				BankBookDTO bankBookDTO = new BankBookDTO();
 				bankBookDTO.setBookNumber(rs.getLong("bookNumber"));
@@ -37,17 +66,19 @@ public class BankBookDAO {
 				bankBookDTO.setBookSale(rs.getInt("bookSale"));
 				ar.add(bankBookDTO);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
 		} finally {
 			dbConnector.disConnect(rs, st, con);
 		}
 		
 		return ar;
 		
-	}
+	}//getList()메서드 종료
 	
-	
+	//getSelect()메서드 : 지정받은 booknumber에 해당하는 정보를 모두 출력 
 	public BankBookDTO getSelect(BankBookDTO bankBookDTO) {
 		
 		Connection con = dbConnector.getConnect();
@@ -73,12 +104,13 @@ public class BankBookDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+				
 		} finally {
 			dbConnector.disConnect(rs, st, con);
 		}
 		
 		return result;
 		
-	}//getSelect
+	}//getSelect()메서드 종료
 
 }
