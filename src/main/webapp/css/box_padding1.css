@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+#title {
+	color: red;
+}
+
+.c1 {
+	border: green solid 2px;
+	width: 300px;
+	height: 300px;
+	
+/*
+	padding-top: 30px;
+	padding-left: 30px;
+	---------------------
+	padding-right: 30px; 
+*/
+
+/*
+	padding을 사용하면 박스의 크기가 변경이 되는데 box-sizing으로 유지할 수 있다.
+	padding: 40px;
+	box-sizing: border-box;
+*/
+
+/* 	박스를 가장 우측 하단에 놓고 싶을 때
+	 padding-left: 194px;
+	padding-top: 194px;
+	box-sizing: border-box; 
+*/
+	
+	/* 박스를 중앙에 놓고 싶을 때 */
+	padding: 94px;
+	box-sizing: border-box;
+}
+
+/*-----------------------------------------------------------------------*/
+
+.c1_1 {
+	border: gray solid 2px;
+	width: 100px;
+	height: 100px;
+	
+}
+
+/*-----------------------------------------------------------------------*/
+
+.c2 {
+	border: blue 2px solid;
+/*
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+*/
+
+/* 	
+	padding: 20px 30px;
+ */
+ 
+ 	padding: 40px;
+ }

@@ -13,15 +13,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		
+		<link href="../css/list.css" rel="stylesheet">
 	</head>
 	
 	
 	<body>
-		<h1>Bankbook List Page by JSTL</h1>
+		<h1 id="list">Bankbook List Page by JSTL3</h1>
 		
-		<table>
+		<table class="table">
 			<tr>
-				<th>일련번호</th><th>제품명</th><th>이자율</th>
+				<th class="table_td">일련번호</th><th class="table_td">제품명</th><th class="table_td">이자율</th><th class="table_td">Status</th>
 			</tr>
 			
 			
@@ -40,11 +42,11 @@
 		
 			<c:forEach items="${list}" var="dto" varStatus="i">
 			<tr>
-				<td>${pageScope.dto.bookNumber}</td>
-				<td><a href="./bankbookSelect.do?bookNumber=${dto.bookNumber}"> ${dto.bookName}</a></td>
+				<td class="table_td">${pageScope.dto.bookNumber}</td>
+				<td class="table_td"><a href="./bankbookSelect.do?bookNumber=${dto.bookNumber}"> ${dto.bookName}</a></td>
 				<%-- <td>${dto.bookName}</td> --%>
-				<td>${dto.bookRate}</td>
-				<td>
+				<td class="table_td">${dto.bookRate}</td>
+				<td class="table_td">
 					<p>현재 아이템 : ${i.current}</p>
 					<p>인덱스 번호 : ${i.index}</p>
 					<p>순서 번호 : ${i.count}</p>
