@@ -14,7 +14,6 @@
 			//session
 			//application
 			//page
-			pageContext.
 			String num = request.getParameter("bookNumber");
 			Object obj = request.getAttribute("dto");
 			BankBookDTO bankBookDTO = (BankBookDTO)obj;
